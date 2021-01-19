@@ -1,10 +1,11 @@
 import numpy as np
+import os
 
 def parse(filename):
     with open(filename) as f:
-        for line in f:
+        line = f.readline()
             # 「.」以降の文字は無視
-            res = [list(map(int, l.split(' '))) for l in line.split('.')[0].split(',')]
+        res = [list(map(int, l.split(' '))) for l in line.split('.')[0].split(',')]
     return res
 
 def product(a,b):
