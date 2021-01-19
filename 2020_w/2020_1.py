@@ -12,4 +12,4 @@ for t in tiles:
         else:
             depth += 1
             flag = True
-print(depth)
+print("配置結果の深さ: {}".format(depth))
