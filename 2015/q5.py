@@ -37,4 +37,4 @@ if __name__ == "__main__":
     with open('sample.txt') as f:
         for line in f.readlines():
             text.append(line.split('\n')[0])
-    print(find_similar_lines(text))
+    find_similar_lines(text)
