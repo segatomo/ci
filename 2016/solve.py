@@ -100,19 +100,49 @@ def convert_to_roman_numerals(num):
     return ans
 
 
-# def ex_roman_numerals(num):
-#     """
-#     >>> ex_roman_numerals(149)
-#     'CIL'
-#     """
+def ex_roman_numerals(num):
+    """
+    >>> ex_roman_numerals(149)
+    'CIL'
+    >>> ex_roman_numerals(490)
+    'XD'
+    >>> ex_roman_numerals(1999)
+    'MCMIC'
+    """
+    ex_special = {
+        "IL": 49, "IC": 99, "ID": 499, "IM": 999, "VL": 45, "VC": 95,
+        "VD": 495, "VM": 995, "XD": 490, "XM": 990, "LD": 450, "LM": 950
+    }
+    special_reverse = {} 
+    for k, v in special.items():
+        special_reverse[v] = k
+    ex_special_reverse = {}
+    for k, v in ex_special.items():
+        ex_special_reverse[v] = k
+    normal_reverse = {} 
+    for k, v in normal.items():
+        normal_reverse[v] = k
+    ans = ""
+    if int(str(num)[-3:]) in ex_special_reverse.keys():
+        num_tmp = num - int(str(num)[-3:])
+        ans += convert_to_roman_numerals(num_tmp)
+        ans += ex_special_reverse[int(str(num)[-3:])]
+    elif int(str(num)[-2:]) in ex_special_reverse.keys():
+        num_tmp = num - int(str(num)[-2:])
+        ans += convert_to_roman_numerals(num_tmp)
+        ans += ex_special_reverse[int(str(num)[-2:])]
+    else:
+        ans = convert_to_roman_numerals(num)
+    return ans
+
 
 english_nums = {
     "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, 
     "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
     "eleven": 11, "twelve": 12, "thirteen": 13, "forteen": 14, "fifteen": 15,
     "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19, "twenty": 20,
-    "thirty": 30, "fourty": 40, "fifty": 50, "sixty": 60, "seventy": 70,
-    "eighty": 80, "ninty": 90, "hundred": 100, "thousand": 1000
+    "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70,
+    "eighty": 80, "ninety": 90, "hundred": 100, "thousand": 1000
 }
 
 
@@ -130,7 +160,7 @@ def parse_english_num(s):
     2000
     >>> parse_english_num("three thousand two")
     3002
-    >>> parse_english_num("one hundred ninty")
+    >>> parse_english_num("one hundred ninety")
     190
     >>> parse_english_num("eleven thousand twenty two")
     11022
@@ -184,3 +214,4 @@ if __name__ == "__main__":
     doctest.testmod()
     convert_to_roman_numerals(207)
     parse_english_num("fifty four thousand three hundred twelve")
+    ex_roman_numerals(149)

@@ -74,6 +74,10 @@ digits = {
 def is_equal(mat_a, mat_b):
     """
     2次元配列同士が同じか判定
+    >>> is_equal([[1,1,1],[1,1,1]], [[1,1,1],[1,1,1]])
+    True
+    >>> is_equal([[1,1,1],[1,1,1]], [[1,2,1],[1,1,1]])
+    False
     """
     for i in range(len(mat_b)):
         if mat_a.shape == mat_b.shape:

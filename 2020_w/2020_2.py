@@ -44,7 +44,7 @@ def calc_depth(filename, debug=False):
         available_x_history[num] = available_x
         if len(square) - available_y < t:
             square = np.append(square, np.zeros((t-len(square)+available_y, 10)), axis=0).copy()
-        if available_x_history[num-1]+t > 9:
+        if available_x_history[num-1]+t > 10:
             square[available_y:available_y+t, 0:t] = num+1
         else:
             square[available_y:available_y+t, available_x:available_x+t] = num+1

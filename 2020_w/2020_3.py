@@ -1,6 +1,8 @@
 import numpy as np
 label = list(map(str, range(1,10))) + ["0"] \
               + list(map(chr, range(65, 91)))
+
+              
 def calc_depth(filename, debug=False):
     tiles = []
     with open(filename) as f:
@@ -46,7 +48,7 @@ def calc_depth(filename, debug=False):
         availabel_x_history[num] = availabel_x
         if len(square) - availabel_y < t:
             square = np.append(square, np.zeros((t-len(square)+availabel_y, 10)), axis=0).copy()
-        if availabel_x_history[num-1]+t > 9:
+        if availabel_x_history[num-1]+t > 10:
             square[availabel_y:availabel_y+t, 0:t] = num+1
         else:
             square[availabel_y:availabel_y+t, availabel_x:availabel_x+t] = num+1
@@ -59,7 +61,6 @@ if __name__ == "__main__":
     files = glob.glob('tile3*')
     print(label)
     for file_name in files:
-      if file_name != 'tile3c.txt':
         res = calc_depth(file_name)
         ans = []
         for row in res:
@@ -72,7 +73,5 @@ if __name__ == "__main__":
           ans.append(line)
         import pprint
         print("\n----{}の配置結果----".format(file_name))
-        print(res)
+        # print(res)
         pprint.pprint(ans)
-      else:
-        print("\n----{}の配置結果----\n{}".format(file_name, calc_depth(file_name)))
