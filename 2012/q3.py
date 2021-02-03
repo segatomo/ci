@@ -27,7 +27,7 @@ board_2 = copy.deepcopy(board)
 board_2[0][4] = point
 board_2[14][4] = gun
 
-values = list(range(3,8)) + list(reversed(range(1,8))) + list(range(1,3))
+values = list(range(3,8)) + list(reversed(range(1,7))) + list(range(2,5))
 
 game_point = 0
 
@@ -50,7 +50,9 @@ for _ in range(3):
                 shot1 = True
                 new = copy.deepcopy(board_2)
                 new[i][values[i]] = target
-                if i == 14-j1:
+                print(i, values[i])
+                print(14-j1)
+                if i == 14-j1 and values[i] == 4:
                     # 弾丸が標的に当たったら得点を加算して弾丸と標的は表示しない
                     print("hit1")
                     game_point += 1
@@ -88,6 +90,14 @@ for _ in range(3):
                 new[14-j1][4] = bullet
             if shot2:
                 new[14-j2][4] = bullet
+            if i == 14-j1 and values[i] == 4:
+                print("hit4")
+                game_point += 1
+                break
+            if i == 14-j2 and values[i] == 4:
+                print('hit5')
+                game_point += 1
+                break
             [print(''.join(b)) for b in new]
             print()
         if shot1:
